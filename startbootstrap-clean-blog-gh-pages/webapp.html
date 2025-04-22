@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Wordle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            text-align: center;
+            padding-top: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        .guess-row {
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+        }
+        .letter {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            border: 2px solid #ccc;
+            line-height: 40px;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+        .correct {
+            background-color: green;
+            color: white;
+        }
+        .close {
+            background-color: goldenrod;
+            color: white;
+        }
+        .wrong {
+            background-color: gray;
+            color: white;
+        }
+        #guessInput {
+            font-size: 20px;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Mini Wordle</h1>
+    <input type="text" id="guessInput" maxlength="5" placeholder="Enter 5-letter word">
+    <button onclick="submitGuess()">Guess</button>
+    <div id="results"></div>
+
+    <script>
+        // Secret word to guess
+        const secretWord = "apple";
+        const maxGuesses = 6;
+        let guesses = 0;
+
+        // Function to submit a guess
+        function submitGuess() {
+            const input = document.getElementById("guessInput");
+            const guess = input.value.toLowerCase(); // Grab the guess and make it lowercase
+            input.value = ""; // Clear the input field after submitting the guess
+
+            // Check if the guess is exactly 5 letters
+            if (guess.length !== 5) {
+                alert("Please enter a 5-letter word.");
+                return; // Stop further execution if the guess is not 5 letters
+            }
+
+            guesses++; // Increase the guess count
+            const row = document.createElement("div");
+            row.className = "guess-row"; // This row will contain the guess boxes
+
+            // Loop through each letter of the guess
+            for (let i = 0; i < 5; i++) {
+                const box = document.createElement("div");
+                box.className = "letter"; // Style the box for each letter
+                box.textContent = guess[i]; // Put the letter in the box
+
+                // Check the letter against the secret word and apply appropriate classes
+                if (guess[i] === secretWord[i]) {
+                    box.classList.add("correct"); // Green for correct letter in correct position
+                } else if (secretWord.includes(guess[i])) {
+                    box.classList.add("close"); // Yellow for correct letter in wrong position
+                } else {
+                    box.classList.add("wrong"); // Gray for incorrect letter
+                }
+
+                row.appendChild(box); // Append each letter box to the row
+            }
+
+            document.getElementById("results").appendChild(row); // Add the guess row to the results div
+
+            // Check if the guess matches the secret word
+            if (guess === secretWord) {
+                setTimeout(() => alert("🎉 You guessed it!"), 100); // Notify user if guessed correctly
+            } else if (guesses >= maxGuesses) {
+                setTimeout(() => alert(`❌ Out of guesses! The word was "${secretWord}".`), 100); // Notify user if out of guesses
+            }
+        }
+    </script>
+
+</body>
+</html>

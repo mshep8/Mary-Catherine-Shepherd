@@ -1,0 +1,76 @@
+/* Overall page styling */
+body {
+    background-color: lightblue;
+    font-family: Arial, sans-serif; /* Font family for the entire body */
+    color: darkslategray;
+    margin: 0;
+    padding: 0;
+}
+
+/* Styling for all headings */
+h1, h2 {
+    font-family: 'Georgia', serif; /* Using a different font for headings */
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Navigation bar styling */
+nav {
+    background-color: navy;
+    text-align: center;
+    padding: 10px;
+    font-family: Arial, sans-serif; /* Font for navigation links */
+}
+
+nav a {
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Hero section styling */
+.hero {
+    background-color: lightgray;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.2em;
+    font-style: italic;
+}
+
+/* Content block styling */
+.content-block {
+    background-color: white;
+    margin: 20px;
+    padding: 15px;
+    border: 2px solid darkgray;
+}
+
+/* Main content section with flexbox */
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.main-content .content-block {
+    flex: 1;
+    margin: 0 10px;
+}
+
+/* Footer section */
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-family: 'Verdana', sans-serif; /* Footer font */
+}
